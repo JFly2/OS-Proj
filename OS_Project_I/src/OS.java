@@ -9,8 +9,9 @@ public class OS {
         int global_time = 0;
         int pid = -1;
         int processCount = 0;
+        
         try {
-            Scanner fscan = new Scanner(new File("processes1.txt"));
+            Scanner fscan = new Scanner(new File("OS_Project_I/processes1.txt"));
             while (fscan.hasNextLine()){
                 fscan.nextLine();
                 processCount++;
@@ -22,7 +23,7 @@ public class OS {
         
         try {
             while (processAdded < processCount) {
-                Scanner fscan = new Scanner(new File("processes1.txt"));
+                Scanner fscan = new Scanner(new File("OS_Project_I/processes1.txt"));
                 while (fscan.hasNextLine()){
                     String line = fscan.nextLine();
                     String[] token = line.split(" ");
@@ -30,6 +31,9 @@ public class OS {
 
                     int priority = Integer.parseInt(token[1]);
                     int arrivalTime = Integer.parseInt(token[2]);
+                    
+                    if (global_time == arrivalTime){
+
                     int burstTime = Integer.parseInt(token[3]);
                     int XAR = Integer.parseInt(token[4], 16);
                     int XDI = Integer.parseInt(token[5], 16);
@@ -48,11 +52,10 @@ public class OS {
                     int R6 = Integer.parseInt(token[18], 16);
                     int R7 = Integer.parseInt(token[19], 16);
 
-                    RegisterSet registerSet = new RegisterSet(XAR, XDI, XDO, PC, IR, EMIT, RR, PSW, R0, R1, R2, R3, R4, R5, R6, R7);
-                    PCB pcb = new PCB(-1, processName, priority, arrivalTime, burstTime, 'n', -1, registerSet);
-                    pcb.setNextPCB(pid);
-                    pcb.setPPID(pcb.getNextPCB());
-                    if (global_time == pcb.arrivalTime){
+                        RegisterSet registerSet = new RegisterSet(XAR, XDI, XDO, PC, IR, EMIT, RR, PSW, R0, R1, R2, R3, R4, R5, R6, R7);
+                        PCB pcb = new PCB(-1, processName, priority, arrivalTime, burstTime, 'n', -1, registerSet);
+                        pcb.setNextPCB(pid);
+                        pcb.setPPID(pcb.getNextPCB());
                         processTable[processAdded++] = pcb;
                         pid++;
                     }
