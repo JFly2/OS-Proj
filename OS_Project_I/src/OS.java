@@ -59,7 +59,6 @@ public class OS {
                     }
                 }
                 global_time++;
-                System.out.println(global_time);
                 fscan.close();
             }
             System.out.println(processAdded);
