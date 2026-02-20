@@ -14,13 +14,12 @@ public class OS {
             while (fscan.hasNextLine()){
                 fscan.nextLine();
                 processCount++;
-                System.out.println(processCount);
             }
             fscan.close();
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
-            System.out.println("Done");
+        
         try {
             while (processAdded < processCount) {
                 Scanner fscan = new Scanner(new File("processes1.txt"));
@@ -61,7 +60,6 @@ public class OS {
                 global_time++;
                 fscan.close();
             }
-            System.out.println(processAdded);
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
